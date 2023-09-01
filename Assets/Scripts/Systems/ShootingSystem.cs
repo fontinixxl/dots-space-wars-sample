@@ -41,7 +41,9 @@ namespace SpaceWars.Systems
                 // BulletSystem will apply the movement based on this.
                 state.EntityManager.SetComponentData(bullet, new BulletComponentData
                 {
-                    Direction = math.forward(localToWorld.ValueRO.Rotation)
+                    Direction = math.forward(localToWorld.ValueRO.Rotation),
+                    // Initializer timer to default value specified on Game Data Authoring
+                    LifeTime = gameData.BulletInitialLifeTime
                 });
             }
         }

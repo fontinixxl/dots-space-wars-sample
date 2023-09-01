@@ -18,13 +18,11 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            
             var job = new MoveBulletJob
             {
                 DeltaTime = SystemAPI.Time.DeltaTime,
                 Velocity = SystemAPI.GetSingleton<GameData>().BulletVelocity
             };
-
             job.ScheduleParallel();
         }
     }

@@ -596,8 +596,9 @@ MonoBehaviour:
     type: 3}
   bulletPrefab: {fileID: 6512580089576971725, guid: a5d1345301e181145b339bc8e982c914,
     type: 3}
-  shipsToSpawn: 500
+  shipsToSpawn: 1000
   bulletVelocity: 100
+  bulletLifeTime: 0.8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

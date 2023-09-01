@@ -19,5 +19,6 @@ namespace SpaceWars.Authoring
     public struct BulletComponentData : IComponentData
     {
         public float3 Direction;
+        public float LifeTime;
     }
 }

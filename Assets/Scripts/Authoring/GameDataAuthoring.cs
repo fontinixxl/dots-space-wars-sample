@@ -12,6 +12,7 @@ namespace SpaceWars.Authoring
         public GameObject bulletPrefab;
         public int shipsToSpawn = 500;
         public float bulletVelocity = 100f;
+        public float bulletLifeTime = 1.0f;
 
         class Baker : Baker<GameDataAuthoring>
         {
@@ -31,7 +32,8 @@ namespace SpaceWars.Authoring
                     ShipPrefab = GetEntity(authoring.spaceShip, TransformUsageFlags.Dynamic),
                     ShipsToSpawn = (ushort)authoring.shipsToSpawn,
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    BulletVelocity = authoring.bulletVelocity
+                    BulletVelocity = authoring.bulletVelocity,
+                    BulletInitialLifeTime = authoring.bulletLifeTime
                 });
             }
         }
@@ -43,6 +45,7 @@ namespace SpaceWars.Authoring
         public Entity BulletPrefab;
         public UInt16 ShipsToSpawn;
         public float BulletVelocity;
+        public float BulletInitialLifeTime;
     }
 
     public struct PlanetsWayPointsPositions : IBufferElementData
