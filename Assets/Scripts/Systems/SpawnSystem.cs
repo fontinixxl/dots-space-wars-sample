@@ -13,7 +13,7 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SpaceShipBakingData>();
+            state.RequireForUpdate<GameData>();
             state.RequireForUpdate<PlanetsWayPointsPositions>();
         }
     
@@ -26,12 +26,12 @@ namespace SpaceWars.Systems
             // Get component data using Singleton, since there is only one Entity matching those components
             // Notice though, for the Buffer we need to use GetSingletonBuffer
             var wayPointsArray = SystemAPI.GetSingletonBuffer<PlanetsWayPointsPositions>().Reinterpret<float3>().AsNativeArray();
-            var shipData = SystemAPI.GetSingleton<SpaceShipBakingData>();
+            var gameData = SystemAPI.GetSingleton<GameData>();
         
             var rand = new Random(123);
-            for (var i = 0; i < shipData.ShipsToSpawn; i++)
+            for (var i = 0; i < gameData.ShipsToSpawn; i++)
             {
-                var spaceShip = state.EntityManager.Instantiate(shipData.ShipPrefab);
+                var spaceShip = state.EntityManager.Instantiate(gameData.ShipPrefab);
                 var position = new float3
                 {
                     x = rand.NextInt(-300, 300),

@@ -9,7 +9,9 @@ namespace SpaceWars.Authoring
     {
         public Transform[] waypoints;
         public GameObject spaceShip;
+        public GameObject bulletPrefab;
         public int shipsToSpawn = 500;
+        public float bulletVelocity = 100f;
 
         class Baker : Baker<GameDataAuthoring>
         {
@@ -24,19 +26,23 @@ namespace SpaceWars.Authoring
                     bufferPosition.Add(GetComponent<Transform>(waypointTransform).position);
                 }
             
-                AddComponent(entity, new SpaceShipBakingData
+                AddComponent(entity, new GameData
                 {
                     ShipPrefab = GetEntity(authoring.spaceShip, TransformUsageFlags.Dynamic),
-                    ShipsToSpawn = (ushort)authoring.shipsToSpawn
+                    ShipsToSpawn = (ushort)authoring.shipsToSpawn,
+                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
+                    BulletVelocity = authoring.bulletVelocity
                 });
             }
         }
     }
 
-    public struct SpaceShipBakingData : IComponentData
+    public struct GameData : IComponentData
     {
         public Entity ShipPrefab;
+        public Entity BulletPrefab;
         public UInt16 ShipsToSpawn;
+        public float BulletVelocity;
     }
 
     public struct PlanetsWayPointsPositions : IBufferElementData

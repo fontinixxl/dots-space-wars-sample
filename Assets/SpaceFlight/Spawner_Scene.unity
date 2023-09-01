@@ -594,7 +594,10 @@ MonoBehaviour:
   - {fileID: 286196145}
   spaceShip: {fileID: 1332995063531719171, guid: ea769d329dd5e43ce92729fda9cf7c3a,
     type: 3}
-  shipsToSpawn: 1000
+  bulletPrefab: {fileID: 6512580089576971725, guid: a5d1345301e181145b339bc8e982c914,
+    type: 3}
+  shipsToSpawn: 500
+  bulletVelocity: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -5,21 +5,12 @@ namespace SpaceWars.Authoring
 {
     public class ShipDataAuthoring : MonoBehaviour
     {
-        public float speed;
-        public float rotationSpeed;
-        public int currentWaypoint;
-
         public class ShipDataBaker : Baker<ShipDataAuthoring>
         {
             public override void Bake(ShipDataAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new ShipData
-                {
-                    Speed = authoring.speed,
-                    RotationSpeed = authoring.rotationSpeed,
-                    CurrentWaypoint = authoring.currentWaypoint
-                });
+                AddComponent(entity, new ShipData());
             }
         }
     }
@@ -30,5 +21,9 @@ namespace SpaceWars.Authoring
         public float RotationSpeed;
         public int CurrentWaypoint;
         public bool IsApproachingPlanet;
+    }
+
+    public struct Shooting : IComponentData, IEnableableComponent
+    {
     }
 }
