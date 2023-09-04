@@ -13,6 +13,7 @@ namespace SpaceWars.Systems
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GameData>();
+            state.RequireForUpdate<Cannon>();
         }
 
         [BurstCompile]
@@ -20,31 +21,43 @@ namespace SpaceWars.Systems
         {
             var gameData = SystemAPI.GetSingleton<GameData>();
 
-            // Get all the cannons (x4 in one spaceship) of all spaceships, so when can spawn bullets from them.
-            foreach (var localToWorld in SystemAPI.Query<RefRO<LocalToWorld>>()
-                         .WithAll<Cannon>())
+            // Get all entities that have shooting component enabled
+            foreach (var (_, entity) in SystemAPI.Query<RefRO<LocalToWorld>>()
+                         .WithAll<Shooting>().WithEntityAccess())
             {
-                Entity bullet = state.EntityManager.Instantiate(gameData.BulletPrefab);
-                
-                state.EntityManager.SetComponentData(bullet, new LocalTransform
+                // For each entity, get all the cannon child components in order to get the position and rotation
+                // for spawning the bullets
+                DynamicBuffer<Child> children = SystemAPI.GetBuffer<Child>(entity);
+                for (int i = 0; i < children.Length; i++)
                 {
-                    // The bullet will spawn on the tip of the cannon as defined in the Transform GameObject of the Prefab
-                    Position = localToWorld.ValueRO.Position,
-                    // Because the bullet may be rotated, we are combining the rotation of the cannon and the rotation of the bullet prefab
-                    Rotation = math.mul(localToWorld.ValueRO.Rotation, SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Rotation),
-                    // Keep the same scale as the one found on the prefab
-                    Scale = SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Scale
-                });
-                
-                // Since at this point we have a reference to the localTransform of the cannon, we use it to
-                // specify the direction in which the bullet need to move.
-                // BulletSystem will apply the movement based on this.
-                state.EntityManager.SetComponentData(bullet, new BulletComponentData
-                {
-                    Direction = math.forward(localToWorld.ValueRO.Rotation),
-                    // Initializer timer to default value specified on Game Data Authoring
-                    LifeTime = gameData.BulletInitialLifeTime
-                });
+                    var cannonEntity = children[i].Value;
+                    if (!SystemAPI.HasComponent<Cannon>(cannonEntity))
+                        continue;
+
+                    var cannonWorldPos = SystemAPI.GetComponent<LocalToWorld>(cannonEntity);
+                    Entity bullet = state.EntityManager.Instantiate(gameData.BulletPrefab);
+
+                    state.EntityManager.SetComponentData(bullet, new LocalTransform
+                    {
+                        // The bullet will spawn on the tip of the cannon as defined in the Transform GameObject of the Prefab
+                        Position = cannonWorldPos.Position,
+                        // Because the bullet may be rotated, we are combining the rotation of the cannon and the rotation of the bullet prefab
+                        Rotation = math.mul(cannonWorldPos.Rotation,
+                            SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Rotation),
+                        // Keep the same scale as the one found on the prefab
+                        Scale = SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Scale
+                    });
+
+                    // Since at this point we have a reference to the localTransform of the cannon, we use it to
+                    // specify the direction in which the bullet need to move.
+                    // BulletSystem will apply the movement based on this.
+                    state.EntityManager.SetComponentData(bullet, new BulletComponentData
+                    {
+                        Direction = math.forward(cannonWorldPos.Rotation),
+                        // Initialize timer to default value specified on Game Data Authoring
+                        LifeTime = gameData.BulletInitialLifeTime
+                    });
+                }
             }
         }
     }

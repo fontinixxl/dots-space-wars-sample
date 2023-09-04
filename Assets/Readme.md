@@ -1,10 +1,14 @@
-﻿# WIP - Topics studied Dots ECS v1.x
+﻿# Topics covered on the Tech-Demo (ECS 1.0)
 
 - ISystem Interface
 - IJobEntity Interface
 - IComponentData Interface
-- Baking Authoring data using Baker\<T>
+- Baking Authoring
 - Use of **EntityCommandBuffers** to Remove Entities
 - **Creation of dynamic buffers** to store authoring array data into Entities
-- **Handle Entity State change** for spaceShips moving towards or away from target
+- Usage of **IEnableableComponent**
+
+## TODO
+
+- [ ] Get Planets positions at runtime by using a TagComponent
 

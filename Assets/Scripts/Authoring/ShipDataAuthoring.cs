@@ -10,7 +10,9 @@ namespace SpaceWars.Authoring
             public override void Bake(ShipDataAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new ShipData());
+                AddComponent<ShipData>(entity);
+                AddComponent<Shooting>(entity);
+                SetComponentEnabled<Shooting>(entity, false);
             }
         }
     }
@@ -21,8 +23,14 @@ namespace SpaceWars.Authoring
         public float RotationSpeed;
         public int CurrentWaypoint;
         public bool IsApproachingPlanet;
+        // Debug purpose
+        public float lineOfSightAngle;
     }
-
+    
+    // This is a tag component that is also an "enableable component".
+    // Such components can be toggled on and off without removing the component from the entity,
+    // which would be less efficient and wouldn't retain the component's value.
+    // An Enableable component is initially enabled.
     public struct Shooting : IComponentData, IEnableableComponent
     {
     }

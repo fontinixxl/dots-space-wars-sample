@@ -10,7 +10,7 @@ namespace SpaceWars.Authoring
             public override void Bake(CannonAuthoringAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new Cannon());
+                AddComponent<Cannon>(entity);
             }
         }
     }
@@ -21,3 +21,5 @@ namespace SpaceWars.Authoring
 public struct Cannon : IComponentData
 {
 }
+
+

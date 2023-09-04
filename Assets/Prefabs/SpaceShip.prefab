@@ -30,6 +30,10 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5408157155450667429}
+  - {fileID: 8535795577183496620}
+  - {fileID: 569269197696397521}
+  - {fileID: 456511429638848576}
   - {fileID: 7311891116303354565}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,11 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264d4fd6c9084bc448bac57dbe67ee06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonSpawnPoints:
-  - {fileID: 456511429638848576}
-  - {fileID: 569269197696397521}
-  - {fileID: 8535795577183496620}
-  - {fileID: 5408157155450667429}
 --- !u!1 &2217751635995059941
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,12 +74,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217751635995059941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -9.5, y: -0.29, z: -9.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: 9.5, y: -0.28999996, z: 9.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7311891116303354565}
+  m_Father: {fileID: 7925970393203454644}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4641126772213829934
 MonoBehaviour:
@@ -94,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37eb3eb2ba5450d824d006e8c0b74d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallSpawn: {fileID: 0}
 --- !u!1 &3426743608034520925
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,12 +118,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3426743608034520925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 9.54, y: -0.29, z: -9.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: -9.539999, y: -0.28999996, z: 9.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7311891116303354565}
+  m_Father: {fileID: 7925970393203454644}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4465560765896654671
 MonoBehaviour:
@@ -139,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37eb3eb2ba5450d824d006e8c0b74d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallSpawn: {fileID: 0}
 --- !u!1 &4391171995172796836
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,12 +162,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4391171995172796836}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -9.5, y: 2.22, z: -9.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: 9.5, y: 2.2199998, z: 9.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7311891116303354565}
+  m_Father: {fileID: 7925970393203454644}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4664410619818502299
 MonoBehaviour:
@@ -184,7 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37eb3eb2ba5450d824d006e8c0b74d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallSpawn: {fileID: 0}
 --- !u!1 &8576980486220148314
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,12 +206,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8576980486220148314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 9.54, y: 2.23, z: -9.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: -9.539999, y: 2.2299998, z: 9.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7311891116303354565}
+  m_Father: {fileID: 7925970393203454644}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &7105952937243677392
 MonoBehaviour:
@@ -229,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37eb3eb2ba5450d824d006e8c0b74d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallSpawn: {fileID: 0}
 --- !u!1001 &2306892993124180447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300,23 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2020c79efce914b61a1182ac8ee88117,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 456511429638848576}
-    - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2020c79efce914b61a1182ac8ee88117,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 569269197696397521}
-    - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2020c79efce914b61a1182ac8ee88117,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8535795577183496620}
-    - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2020c79efce914b61a1182ac8ee88117,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5408157155450667429}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2020c79efce914b61a1182ac8ee88117, type: 3}
 --- !u!4 &7311891116303354565 stripped
