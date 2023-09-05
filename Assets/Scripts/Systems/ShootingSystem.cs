@@ -24,8 +24,7 @@ namespace SpaceWars.Systems
             foreach (var (_, entity) in SystemAPI.Query<RefRO<LocalToWorld>>()
                          .WithAll<Shooting>().WithEntityAccess())
             {
-                // For each entity, get all the cannon child components in order to get the position and rotation
-                // for spawning the bullets
+                // For each entity, get all the cannon child components in order to get its position and rotation
                 DynamicBuffer<Child> children = SystemAPI.GetBuffer<Child>(entity);
                 for (int i = 0; i < children.Length; i++)
                 {
