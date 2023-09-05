@@ -15,7 +15,7 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<GameData>();
+            state.RequireForUpdate<Config>();
             state.RequireForUpdate<Planet>();
         }
 
@@ -23,7 +23,7 @@ namespace SpaceWars.Systems
         public void OnUpdate(ref SystemState state)
         {
             // Access to current way point -> ShipData component
-            var gameData = SystemAPI.GetSingleton<GameData>();
+            var gameData = SystemAPI.GetSingleton<Config>();
 
             var job = new SetShootingStateJob
             {

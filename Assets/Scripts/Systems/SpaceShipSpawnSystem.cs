@@ -13,7 +13,7 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<GameData>();
+            state.RequireForUpdate<Config>();
             state.RequireForUpdate<Planet>();
         }
     
@@ -24,7 +24,7 @@ namespace SpaceWars.Systems
             state.Enabled = false;
         
             // Get component data using Singleton, since there is only one Entity matching those components
-            var gameData = SystemAPI.GetSingleton<GameData>();
+            var gameData = SystemAPI.GetSingleton<Config>();
         
             var rand = new Random(123);
             for (var i = 0; i < gameData.ShipsToSpawn; i++)

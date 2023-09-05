@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 1863731511}
   - component: {fileID: 1863731512}
   m_Layer: 0
-  m_Name: GameData
+  m_Name: Config
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,11 +643,14 @@ MonoBehaviour:
     type: 3}
   bulletPrefab: {fileID: 6512580089576971725, guid: a5d1345301e181145b339bc8e982c914,
     type: 3}
+  explosionPrefab: {fileID: 4119077378468126256, guid: 2fc4bacf020cba34e96ab48516546d65,
+    type: 3}
   shipsToSpawn: 500
   bulletVelocity: 100
   bulletLifeTime: 1
-  fieldOfViewAngle: 10
+  fieldOfViewAngle: 8
   distanceShootingTarget: 100
+  explosionProbability: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

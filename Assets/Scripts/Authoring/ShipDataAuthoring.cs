@@ -22,11 +22,8 @@ namespace SpaceWars.Authoring
     {
         public float Speed;
         public float RotationSpeed;
-        public int CurrentWaypoint;
         public float3 TargetPlanetPosition;
         public bool IsApproachingPlanet;
-        // Debug purpose
-        public float lineOfSightAngle;
     }
     
     // This is a tag component that is also an "enableable component".

@@ -6,7 +6,7 @@ using Unity.Entities;
 namespace SpaceWars.Systems
 {
     [UpdateAfter(typeof(BulletSystem))]
-    public partial struct TimedDestroySystem : ISystem
+    public partial struct LifeTimeSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -19,7 +19,6 @@ namespace SpaceWars.Systems
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-
             var destroyTimedJob = new DestroyTimedJob
             {
                 DeltaTime = SystemAPI.Time.DeltaTime,
@@ -35,10 +34,10 @@ namespace SpaceWars.Systems
         [ReadOnly] public float DeltaTime;
         public EntityCommandBuffer ECB;
 
-        void Execute(Entity entity, ref Bullet bulletData)
+        void Execute(Entity entity, ref LifeTime lifeTime)
         {
-            bulletData.LifeTime -= DeltaTime;
-            if (bulletData.LifeTime <= 0)
+            lifeTime.Value -= DeltaTime;
+            if (lifeTime.Value <= 0)
             {
                 ECB.DestroyEntity(entity);
             }

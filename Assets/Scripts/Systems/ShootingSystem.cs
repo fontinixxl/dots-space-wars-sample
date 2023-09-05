@@ -12,16 +12,15 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<GameData>();
+            state.RequireForUpdate<Config>();
             state.RequireForUpdate<Cannon>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var gameData = SystemAPI.GetSingleton<GameData>();
+            var gameData = SystemAPI.GetSingleton<Config>();
 
-            // Get all entities that have shooting component enabled
             foreach (var (_, entity) in SystemAPI.Query<RefRO<LocalToWorld>>()
                          .WithAll<Shooting>().WithEntityAccess())
             {
@@ -44,7 +43,6 @@ namespace SpaceWars.Systems
                         // Because the bullet may be rotated, we are combining the rotation of the cannon and the rotation of the bullet prefab
                         Rotation = math.mul(cannonWorldPos.Rotation,
                             SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Rotation),
-                        // Keep the same scale as the one found on the prefab
                         Scale = SystemAPI.GetComponent<LocalTransform>(gameData.BulletPrefab).Scale
                     });
 
@@ -54,8 +52,12 @@ namespace SpaceWars.Systems
                     state.EntityManager.SetComponentData(bullet, new Bullet
                     {
                         Direction = math.forward(cannonWorldPos.Rotation),
+                    });
+
+                    state.EntityManager.SetComponentData(bullet, new LifeTime
+                    {
                         // Initialize timer to default value specified on Game Data Authoring
-                        LifeTime = gameData.BulletInitialLifeTime
+                        Value = gameData.BulletInitialLifeTime
                     });
                 }
             }
