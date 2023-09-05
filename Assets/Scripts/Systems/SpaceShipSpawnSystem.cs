@@ -8,24 +8,22 @@ using Random = Unity.Mathematics.Random;
 
 namespace SpaceWars.Systems
 {
-    public partial struct SpawnSystem : ISystem
+    public partial struct SpaceShipSpawnSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GameData>();
-            state.RequireForUpdate<PlanetsWayPointsPositions>();
+            state.RequireForUpdate<Planet>();
         }
     
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            // We only want to spawn obstacles one time. Disabling the system stops subsequent updates.
+            // We only want to spawn one time. Disabling the system stops subsequent updates.
             state.Enabled = false;
         
             // Get component data using Singleton, since there is only one Entity matching those components
-            // Notice though, for the Buffer we need to use GetSingletonBuffer
-            var wayPointsArray = SystemAPI.GetSingletonBuffer<PlanetsWayPointsPositions>().Reinterpret<float3>().AsNativeArray();
             var gameData = SystemAPI.GetSingleton<GameData>();
         
             var rand = new Random(123);
@@ -47,15 +45,15 @@ namespace SpaceWars.Systems
                     Rotation = new quaternion(q.x, q.y, q.z, q.w)
                 });
 
-                var closestWp = 0;
                 var closestDistance = math.INFINITY;
-                for (var j = 0; j < wayPointsArray.Length; j++)
+                float3 targetPlanetPos = float3.zero;
+                foreach (var transform in SystemAPI.Query<RefRO<LocalTransform>>().WithAll<Planet>())
                 {
-                    var distance = Vector3.Distance(wayPointsArray[j], position);
-                    if ( distance < closestDistance)
+                    var distanceSq = math.distancesq(transform.ValueRO.Position, position);
+                    if ( distanceSq < closestDistance)
                     {
-                        closestWp = j;
-                        closestDistance = distance;
+                        closestDistance = distanceSq;
+                        targetPlanetPos = transform.ValueRO.Position;
                     }
                 }
                 
@@ -63,7 +61,7 @@ namespace SpaceWars.Systems
                 {
                     Speed = rand.NextInt(5, 20),
                     RotationSpeed = rand.NextInt(3, 5),
-                    CurrentWaypoint = closestWp
+                    TargetPlanetPosition = targetPlanetPos
                 });
             }
         }

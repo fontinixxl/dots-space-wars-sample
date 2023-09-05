@@ -16,7 +16,7 @@ namespace SpaceWars.Systems
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GameData>();
-            state.RequireForUpdate<PlanetsWayPointsPositions>();
+            state.RequireForUpdate<Planet>();
         }
 
         [BurstCompile]
@@ -27,8 +27,6 @@ namespace SpaceWars.Systems
 
             var job = new SetShootingStateJob
             {
-                PlanetsPositions = SystemAPI.GetSingletonBuffer<PlanetsWayPointsPositions>().Reinterpret<float3>()
-                    .AsNativeArray(),
                 FieldOfViewAngle = gameData.FieldOfViewAngle,
                 MinDistanceShooting = gameData.MinDistanceToTargetShooting
             };
@@ -40,13 +38,12 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public partial struct SetShootingStateJob : IJobEntity
         {
-            [ReadOnly] public NativeArray<float3> PlanetsPositions;
             [ReadOnly] public float FieldOfViewAngle;
             [ReadOnly] public float MinDistanceShooting;
                 
             void Execute(in LocalTransform transform, in ShipData shipData, EnabledRefRW<Shooting> shootingState)
             {
-                shootingState.ValueRW = IsTargetInSight(transform, PlanetsPositions[shipData.CurrentWaypoint]);
+                shootingState.ValueRW = IsTargetInSight(transform, shipData.TargetPlanetPosition);
             }
 
             // Calculates the angle between the spaceship's forward direction and the direction to the target manually

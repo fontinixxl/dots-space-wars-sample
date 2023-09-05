@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace SpaceWars.Authoring
@@ -22,6 +23,7 @@ namespace SpaceWars.Authoring
         public float Speed;
         public float RotationSpeed;
         public int CurrentWaypoint;
+        public float3 TargetPlanetPosition;
         public bool IsApproachingPlanet;
         // Debug purpose
         public float lineOfSightAngle;

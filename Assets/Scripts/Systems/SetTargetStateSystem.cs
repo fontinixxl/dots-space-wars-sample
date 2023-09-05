@@ -1,6 +1,5 @@
 ﻿using SpaceWars.Authoring;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -19,11 +18,7 @@ namespace SpaceWars.Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var job = new SetTargetStateJob
-            {
-                Waypoints =  SystemAPI.GetSingletonBuffer<PlanetsWayPointsPositions>().
-                    Reinterpret<float3>().AsNativeArray()
-            };
+            var job = new SetTargetStateJob();
             job.ScheduleParallel();
         }
     }
@@ -32,11 +27,9 @@ namespace SpaceWars.Systems
 [BurstCompile]
 partial struct SetTargetStateJob : IJobEntity
 {
-    [ReadOnly] public NativeArray<float3> Waypoints;
-    
     void Execute(in LocalTransform transform, ref ShipData shipData)
     {
-        var distance = math.distance(transform.Position, Waypoints[shipData.CurrentWaypoint]);
+        var distance = math.distance(transform.Position, shipData.TargetPlanetPosition);
         if (distance < 60)
             shipData.IsApproachingPlanet = false;
         else if (distance > 300)

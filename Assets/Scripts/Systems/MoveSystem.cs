@@ -1,6 +1,5 @@
 ﻿using SpaceWars.Authoring;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -25,7 +24,6 @@ namespace SpaceWars.Systems
             var job = new MoveTowardsTargetJob
             {
                 DeltaTime = SystemAPI.Time.DeltaTime,
-                Waypoints = SystemAPI.GetSingletonBuffer<PlanetsWayPointsPositions>().Reinterpret<float3>().AsNativeArray()
             };
             job.ScheduleParallel();
         }
@@ -34,17 +32,15 @@ namespace SpaceWars.Systems
     [BurstCompile]
     partial struct MoveTowardsTargetJob : IJobEntity
     {
-        [ReadOnly] public NativeArray<float3> Waypoints;
         public float DeltaTime;
     
         void Execute(ref LocalTransform transform, in ShipData shipData)
         {
             float3 heading;
-            var waypoint = Waypoints[shipData.CurrentWaypoint];
             if (shipData.IsApproachingPlanet)
-                heading = waypoint - transform.Position;
+                heading = shipData.TargetPlanetPosition - transform.Position;
             else
-                heading = transform.Position - waypoint;
+                heading = transform.Position - shipData.TargetPlanetPosition;
 
             var targetDirection = quaternion.LookRotation(heading, math.up());
             transform.Rotation = math.slerp(transform.Rotation, targetDirection, DeltaTime * shipData.RotationSpeed);
