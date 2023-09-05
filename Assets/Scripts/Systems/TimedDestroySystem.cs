@@ -12,7 +12,7 @@ namespace SpaceWars.Systems
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
-            state.RequireForUpdate<BulletComponentData>();
+            state.RequireForUpdate<Bullet>();
         }
 
         [BurstCompile]
@@ -35,7 +35,7 @@ namespace SpaceWars.Systems
         [ReadOnly] public float DeltaTime;
         public EntityCommandBuffer ECB;
 
-        void Execute(Entity entity, ref BulletComponentData bulletData)
+        void Execute(Entity entity, ref Bullet bulletData)
         {
             bulletData.LifeTime -= DeltaTime;
             if (bulletData.LifeTime <= 0)

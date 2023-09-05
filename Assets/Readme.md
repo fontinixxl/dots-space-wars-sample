@@ -1,14 +1,15 @@
 ﻿# Topics covered on the Tech-Demo (ECS 1.0)
 
-- ISystem Interface
-- IJobEntity Interface
-- IComponentData Interface
-- Baking Authoring
-- Use of **EntityCommandBuffers** to Remove Entities
-- **Creation of dynamic buffers** to store authoring array data into Entities
-- Usage of **IEnableableComponent**
+- `ISystem`
+- `IJobEntity`
+- `IComponentData`
+- `Baker`
+- `EntityCommandBuffers` to Remove Entities
+- ~~`DynamicBuffer` to store authoring array data into Entities~~
+- `IEnableableComponent` to disable shooting component when spaceship is out of target
+- `QueryBuilder` to iterate component Data inside an `IJobEntity`
 
 ## TODO
 
-- [ ] Get Planets positions at runtime by using a TagComponent
+- [x] Get Planets positions at runtime by using a TagComponent
 

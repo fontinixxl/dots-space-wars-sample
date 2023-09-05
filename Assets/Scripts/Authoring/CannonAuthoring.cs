@@ -21,5 +21,3 @@ namespace SpaceWars.Authoring
 public struct Cannon : IComponentData
 {
 }
-
-

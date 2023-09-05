@@ -10,7 +10,7 @@ namespace SpaceWars.Systems
     /// System responsible of moving the spaceships either towards their target planet or away from it
     /// This state change is calculated in <see cref="SpaceWars.Systems.SetTargetStateSystem"/>
     /// </summary>
-    public partial struct MoveSystem : ISystem
+    public partial struct SpaceShipMoveSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)

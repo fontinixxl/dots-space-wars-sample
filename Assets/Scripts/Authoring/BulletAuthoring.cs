@@ -11,12 +11,12 @@ namespace SpaceWars.Authoring
             public override void Bake(BulletAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
-                AddComponent(entity, new BulletComponentData());
+                AddComponent(entity, new Bullet());
             }
         }
     }
 
-    public struct BulletComponentData : IComponentData
+    public struct Bullet : IComponentData
     {
         public float3 Direction;
         public float LifeTime;

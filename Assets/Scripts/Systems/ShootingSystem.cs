@@ -51,7 +51,7 @@ namespace SpaceWars.Systems
                     // Since at this point we have a reference to the localTransform of the cannon, we use it to
                     // specify the direction in which the bullet need to move.
                     // BulletSystem will apply the movement based on this.
-                    state.EntityManager.SetComponentData(bullet, new BulletComponentData
+                    state.EntityManager.SetComponentData(bullet, new Bullet
                     {
                         Direction = math.forward(cannonWorldPos.Rotation),
                         // Initialize timer to default value specified on Game Data Authoring

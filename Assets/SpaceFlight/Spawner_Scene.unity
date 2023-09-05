@@ -645,7 +645,7 @@ MonoBehaviour:
     type: 3}
   shipsToSpawn: 500
   bulletVelocity: 100
-  bulletLifeTime: 0.8
+  bulletLifeTime: 1
   fieldOfViewAngle: 10
   distanceShootingTarget: 100
 --- !u!1660057539 &9223372036854775807
