@@ -1,5 +1,5 @@
 ﻿# Unity DOTS 1.0 Tech Demo
-
+Unity 2022.3.7 | Entities Package v1.0.14
 ## Overview
 
 * **Spaceship Generation**: Spaceships are dynamically spawned in large quantities. The number of spaceships is customizable within the editor.
