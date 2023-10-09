@@ -2,6 +2,9 @@
 Unity 2022.3.7 | Entities Package v1.0.14
 ## Overview
 
+500 spaceship entities, 4 planets, thousands of bullets with solid performance
+![alt text](media/gameplay.gif)
+
 * **Spaceship Generation**: Spaceships are dynamically spawned in large quantities. The number of spaceships is customizable within the editor.
 * **Spaceship Behavior**:
   * Upon spawning, each spaceship identifies the nearest planet.
@@ -13,8 +16,6 @@ Unity 2022.3.7 | Entities Package v1.0.14
 * Players can switch the camera's focus to another spaceship by pressing the Space key.
 
 
-![alt text](media/editor_screenshot.png)
-
 ## Topics Covered
 
 - `ISystem`
@@ -22,7 +23,6 @@ Unity 2022.3.7 | Entities Package v1.0.14
 - `IComponentData`
 - `Baker`
 - `EntityCommandBuffers` to Remove Entities
-- ~~`DynamicBuffer` to store authoring array data into Entities~~
 - `IEnableableComponent` to disable shooting component when spaceship is out of target
 - `QueryBuilder` to iterate component Data inside an `IJobEntity`
 
